@@ -56,23 +56,6 @@ struct WelcomePage: View {
         }
     }
     
-    
-    
-    private func handleGoogle() async {
-        do {
-            
-            let session = try await supabase.auth.signInWithOAuth(
-                provider: .google,
-                redirectTo: URL("https://seewillow.com")
-            ) { (session: ASWebAuthenticationSession) in
-              // customize session
-            }
-            
-        }
-        catch {
-            
-        }
-    }
 }
 
 
