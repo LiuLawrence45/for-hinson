@@ -11,5 +11,5 @@ struct WillowMacApp: App {
             WelcomePage()
                 .environmentObject(authState)
         }
-    }
+    }   
 }

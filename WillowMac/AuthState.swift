@@ -14,7 +14,7 @@ class AuthState: ObservableObject {
     
     init() {
         Task {
-            for await (event, session) in supabase.auth.authStateChanges {
+            for await (_, session) in supabase.auth.authStateChanges {
                 await MainActor.run {
                     self.isAuthenticated = session != nil
                     self.user = session?.user
