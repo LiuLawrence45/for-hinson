@@ -17,8 +17,14 @@ struct SignInView: View {
     
     var body: some View {
         Button {
-            
-            viewModel.signInWithGoogle()
+            Task {
+                do {
+                    let appUser = try await viewModel.signInWithGoogle()
+                    self.appUser = appUser
+                } catch {
+                    print("Error signing in")
+                }
+            }
             
         } label: {
             Text("Sign in with Google.")

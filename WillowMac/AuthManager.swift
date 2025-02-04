@@ -31,4 +31,15 @@ class AuthManager {
         return AppUser(uid: session.user.id.uuidString, email: session.user.email)
     }
     
+    func signInWithGoogle(idToken: String) async throws -> AppUser {
+        let session = try await client.auth.signInWithIdToken(credentials: .init(provider: .google, idToken: idToken))
+        print(session)
+        print(session.user)
+        return AppUser(uid: session.user.id.uuidString, email: session.user.email)
+    }
+    
+    func signOut() async throws {
+        try await client.auth.signOut()
+    }
+    
 }
