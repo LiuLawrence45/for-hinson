@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.seewillow.WillowMac</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.888749117867-edf8kln2b9aj9m7i3i5p4relrh88r4nd</string>
+				<string>willow</string>
+			</array>
+		</dict>
+	</array>
+	<key>GIDClientID</key>
+	<string>888749117867-edf8kln2b9aj9m7i3i5p4relrh88r4nd.apps.googleusercontent.com</string>
+</dict>
+</plist>
