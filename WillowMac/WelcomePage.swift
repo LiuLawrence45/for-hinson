@@ -8,6 +8,7 @@ import os
 
 struct WelcomePage: View {
     @EnvironmentObject var authState: AuthState
+    @State private var errorMessage: String? = nil
     
     var body: some View {
         VStack {
@@ -37,39 +38,43 @@ struct WelcomePage: View {
                     }
                 }
             } else {
-                Button("Log in") {
-                    Task {
-                        await handleGoogle()
+                VStack(spacing: 16) {
+                    Button("Log in") {
+                        Task {
+                            await handleGoogle()
+                        }
+                    }
+                    
+                    if let error = errorMessage {
+                        Text(error)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                            .padding()
                     }
                 }
             }
         }
     }
     
+    
+    
     private func handleGoogle() async {
-        guard let window = NSApplication.shared.mainWindow else { return }
-        
         do {
-            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: window)
-            guard let idToken = result.user.idToken?.tokenString else {
-                print("No idToken found.")
-                return
-            }
-            print("idToken from Google is: ", idToken)
-            let accessToken = result.user.accessToken.tokenString
             
-            try await supabase.auth.signInWithIdToken(
-                credentials: OpenIDConnectCredentials(
-                    provider: .google,
-                    idToken: idToken,
-                    accessToken: accessToken
-                )
-            )
-        } catch {
-            print("Sign in error: \(error.localizedDescription)")
+            let session = try await supabase.auth.signInWithOAuth(
+                provider: .google,
+                redirectTo: URL("https://seewillow.com")
+            ) { (session: ASWebAuthenticationSession) in
+              // customize session
+            }
+            
+        }
+        catch {
+            
         }
     }
 }
+
 
 
 

@@ -15,6 +15,8 @@ class AuthState: ObservableObject {
     }
     
     init() {
+        print("Bundle ID:", Bundle.main.bundleIdentifier ?? "nil")
+        
         logger.debug("[DEBUG] AuthState: Initializing")
         Task {
             logger.debug("[DEBUG] AuthState: Starting auth state monitoring")
